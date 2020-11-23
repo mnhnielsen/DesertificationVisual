@@ -25,13 +25,13 @@ public class Controller {
     public ImageView background;
 
 
+    public ImageView makePlayer() {
+        Image player = new Image("Resources/playerSprite.png");
 
-   public ImageView makePlayer(){
-       Image player = new Image("Resources/playerSprite.png");
+        return new ImageView(player);
+    }
 
-       return new ImageView(player);
-   }
-    public void playerInGrid(MouseEvent event){
+    public void playerInGrid(MouseEvent event) {
         ImageView player = makePlayer();
         grid.getChildren().add(player);
         player.setId("player");
@@ -40,7 +40,7 @@ public class Controller {
 
     }
 
-    public void plantInGrid(MouseEvent event){
+    public void plantInGrid(MouseEvent event) {
         ImageView tree = addTree();
         grid.getChildren().add(tree);
         tree.setId("test");
@@ -48,50 +48,49 @@ public class Controller {
         GridPane.setRowIndex(tree, 2);
 
     }
-    public ImageView addTree(){
+
+    public ImageView addTree() {
         Image tree = new Image("Resources/Tree.png");
 
         return new ImageView(tree);
     }
 
-    public void keyPressed(KeyEvent keyEvent) {
+    public void playerMove(KeyEvent keyEvent) {
+        Node player = null;
+        for (Node node :
+                grid.getChildren()) {
+            if (node.getId() == "player") {
+                player = node;
+            }
+        }
 
 
-       playerMove(keyEvent.getText());
 
-   }
+        //System.out.println(keyEvent);
+        //System.out.println(GridPane.getRowIndex(player));
+        //System.out.println(GridPane.getColumnIndex(player));
 
-   public void playerMove(String input){
-       Node player = null;
-       for ( Node node :
-               grid.getChildren() ) {
-           if(node.getId() == "player"){
-               player = node;
-           }
-       }
+        switch (keyEvent.getCode()) {
+            case W:
+                player.setTranslateY(player.getTranslateY() - 5);
+                System.out.println("Move Right");
 
-       int x = GridPane.getColumnIndex(player);
-       int y = GridPane.getRowIndex(player);
+                break;
+            case A:
+                player.setTranslateX(player.getTranslateX() - 5);
+                System.out.println("Move Left");
 
-       System.out.println(input);
-       System.out.println(GridPane.getRowIndex(player));
-       System.out.println(GridPane.getColumnIndex(player));
-
-       switch ( input){
-           case "w":
-               GridPane.setColumnIndex(player, x );
-               GridPane.setRowIndex(player, y-1);
-           case "a":
-               GridPane.setColumnIndex(player, x -1 );
-               GridPane.setRowIndex(player, y);
-           case "s":
-               GridPane.setColumnIndex(player, x );
-               GridPane.setRowIndex(player, y+1);
-           case "d":
-               GridPane.setColumnIndex(player, x + 1 );
-               GridPane.setRowIndex(player, y);
-       }
-   }
+                break;
+            case S:
+                player.setTranslateY(player.getTranslateY() + 5);
+                System.out.println("Move Down");
+                break;
+            case D:
+                player.setTranslateX(player.getTranslateX() + 5);
+                System.out.println("Move Right");
+                break;
+        }
+    }
 
     /*
     //static count of trees in anchorpane

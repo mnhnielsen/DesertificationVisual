@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#playerMove" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,11 +48,11 @@
          <top>
             <HBox fx:id="topHBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <CheckBox fx:id="move" mnemonicParsing="false" onKeyTyped="#keyPressed" text="move" />
+                  <CheckBox fx:id="move" mnemonicParsing="false" onKeyTyped="#playerMove" text="move" />
                </children></HBox>
          </top>
          <bottom>
-            <HBox fx:id="botHBox" onKeyPressed="#keyPressed" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <HBox fx:id="botHBox" onKeyPressed="#playerMove" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
