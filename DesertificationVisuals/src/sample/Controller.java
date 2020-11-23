@@ -24,9 +24,14 @@ public class Controller {
 
 
 
+   public ImageView makePlayer(){
+       Image player = new Image("Resources/playerSprite.png");
+
+       return new ImageView(player);
+   }
 
     public void plantInGrid(MouseEvent event){
-        ImageView tree = addTree();
+        ImageView tree = makePlayer();
         grid.getChildren().add(tree);
         tree.setId("test");
         GridPane.setColumnIndex(tree, 1);
