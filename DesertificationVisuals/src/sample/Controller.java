@@ -25,6 +25,20 @@ public class Controller {
 
 
 
+    public void plantInGrid(MouseEvent event){
+        ImageView tree = addTree();
+        grid.getChildren().add(tree);
+        tree.setId("test");
+        GridPane.setColumnIndex(tree, 1);
+        GridPane.setRowIndex(tree, 2);
+
+    }
+    public ImageView addTree(){
+        Image tree = new Image("Resources/Tree.png");
+
+        return new ImageView(tree);
+    }
+
     /*
     //static count of trees in anchorpane
     private static int treeCount = 0;

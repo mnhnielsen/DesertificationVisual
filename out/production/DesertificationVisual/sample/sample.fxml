@@ -17,7 +17,7 @@
          </image></ImageView>
       <BorderPane prefHeight="600.0" prefWidth="600.0">
          <center>
-            <GridPane fx:id="grid" gridLinesVisible="true" BorderPane.alignment="CENTER">
+            <GridPane fx:id="grid" gridLinesVisible="true" onMouseClicked="#plantInGrid" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
