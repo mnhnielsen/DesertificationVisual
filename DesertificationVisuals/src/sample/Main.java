@@ -1,5 +1,6 @@
 package sample;
 
+import WorldOfZuul.Game;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,9 @@ public class Main extends Application {
 
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+
+        Game game = new Game();
+        game.play();
     }
 
 
