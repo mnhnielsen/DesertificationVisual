@@ -22,6 +22,10 @@ public class Controller {
     public AnchorPane anchorPane;
     public ImageView background;
 
+
+
+
+    /*
     //static count of trees in anchorpane
     private static int treeCount = 0;
 
@@ -78,7 +82,7 @@ public class Controller {
             if(x <= treeX+50 && x > treeX && y <= treeY+50 && y>treeY){
                /* System.out.println("mouse" + x + " " + y );
                 System.out.println("Tree" + treeX + " "+ treeY);
-                System.out.println();*/
+                System.out.println();
 
                 anchorPane.getChildren().remove(tree);
                 
@@ -86,7 +90,7 @@ public class Controller {
             }
         }
         return false;
-    }
+    }*/
 
 
 }
