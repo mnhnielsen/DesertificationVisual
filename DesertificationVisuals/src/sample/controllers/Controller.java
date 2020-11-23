@@ -1,16 +1,18 @@
-package sample;
+package sample.controllers;
 
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.beans.EventHandler;
+import java.lang.invoke.SwitchPoint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,17 @@ public class Controller {
 
        return new ImageView(player);
    }
+    public void playerInGrid(MouseEvent event){
+        ImageView player = makePlayer();
+        grid.getChildren().add(player);
+        player.setId("player");
+        GridPane.setColumnIndex(player, 1);
+        GridPane.setRowIndex(player, 2);
+
+    }
 
     public void plantInGrid(MouseEvent event){
-        ImageView tree = makePlayer();
+        ImageView tree = addTree();
         grid.getChildren().add(tree);
         tree.setId("test");
         GridPane.setColumnIndex(tree, 1);
@@ -43,6 +53,45 @@ public class Controller {
 
         return new ImageView(tree);
     }
+
+    public void keyPressed(KeyEvent keyEvent) {
+
+
+       playerMove(keyEvent.getText());
+
+   }
+
+   public void playerMove(String input){
+       Node player = null;
+       for ( Node node :
+               grid.getChildren() ) {
+           if(node.getId() == "player"){
+               player = node;
+           }
+       }
+
+       int x = GridPane.getColumnIndex(player);
+       int y = GridPane.getRowIndex(player);
+
+       System.out.println(input);
+       System.out.println(GridPane.getRowIndex(player));
+       System.out.println(GridPane.getColumnIndex(player));
+
+       switch ( input){
+           case "w":
+               GridPane.setColumnIndex(player, x );
+               GridPane.setRowIndex(player, y-1);
+           case "a":
+               GridPane.setColumnIndex(player, x -1 );
+               GridPane.setRowIndex(player, y);
+           case "s":
+               GridPane.setColumnIndex(player, x );
+               GridPane.setRowIndex(player, y+1);
+           case "d":
+               GridPane.setColumnIndex(player, x + 1 );
+               GridPane.setRowIndex(player, y);
+       }
+   }
 
     /*
     //static count of trees in anchorpane
