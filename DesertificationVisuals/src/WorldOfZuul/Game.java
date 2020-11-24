@@ -419,4 +419,9 @@ public class Game {
             return true;
         }
     }
+
+    public Room getCurrentRoom()
+    {
+        return currentRoom;
+    }
 }

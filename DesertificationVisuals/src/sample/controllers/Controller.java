@@ -1,6 +1,8 @@
 package sample.controllers;
 
 
+import WorldOfZuul.Game;
+import WorldOfZuul.Room;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -38,6 +40,26 @@ public class Controller {
         GridPane.setColumnIndex(player, 1);
         GridPane.setRowIndex(player, 2);
 
+    }
+    public void changeBackground(){
+        boolean run = true;
+
+        do
+        {
+            switch(Game) {
+                case x:
+                    // code block
+                    break;
+                case y:
+                    // code block
+                    break;
+                default:
+                    // code block
+            }
+
+        }
+        while (run)
+    background.setImage();
     }
 
     public void plantInGrid(MouseEvent event) {
