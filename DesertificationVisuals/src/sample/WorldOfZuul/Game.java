@@ -34,7 +34,7 @@ public class Game {
         currencyObtainRoom = new Room("trash room. Here you can harvest trash using the commandword: pickup", 4);
         currencyObtainRoom.addTrash(8);
 
-        currencyObtainRoom1 = new Room("trash room. Here you can harvest trash using the commandword: pickup", 4);
+        currencyObtainRoom1 = new Room("trash room. Here you can harvest trash using the commandword: pickup", 11);
         currencyObtainRoom1.addTrash(5);
 
         desertBaseRoom = new Room("in the desert base room. Choose a direction to go to a desert", 5);
@@ -136,7 +136,7 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.PICKUP) {
-            if (getCurrentRoom().getType() == 4 && getCurrentRoom().containsTrash()) {
+            if (getCurrentRoom().getType() == 4 || getCurrentRoom().getType() == 11 && getCurrentRoom().containsTrash() ) {
                 while (getCurrentRoom().containsTrash()) {
                     player.addTrash();
                     getCurrentRoom().removeTrash();
@@ -321,11 +321,11 @@ public class Game {
         System.out.println("To get saplings you need to pick up trash to sell in the CurrencyObtainRoom");
     }
 
-    private void printRoomInfo() {
+    public void printRoomInfo() {
         switch (getCurrentRoom().getType()) {
             case 1: {
-                System.out.println("This is the entry room \n " +
-                        " here you can information about desertification... and not much else :)  \b ");
+                System.out.println( ("This is the entry room \n " +
+                        " here you can information about desertification... and not much else :)  \b "));
                 break;
             }
             case 2: {
@@ -338,7 +338,7 @@ public class Game {
                 System.out.println("This is the CurrencyRoom, here you can sell your collected trash for coins \n and buy saplings for planting, commandwords are: buy & sell");
                 break;
             }
-            case 4: {
+            case 4,11: {
                 System.out.println("This is the room where you collect trash.\n Collected trash can be sold for coins in the CurrencyRoom, commandwords are: pickup");
                 break;
             }

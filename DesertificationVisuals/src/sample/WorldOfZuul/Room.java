@@ -62,7 +62,11 @@ public class Room
                 exitCount++;
             }
             else if(exits.get(exit).getType()==4){
-                returnString += " " + exit +"(Trash Room)";
+                returnString += " " + exit +"(Trash Room left)";
+                exitCount++;
+            }
+            else if(exits.get(exit).getType()==11){
+                returnString += " " + exit +"(Trash Room right)";
                 exitCount++;
             }
             else if(exits.get(exit).getType()==5){

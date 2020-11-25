@@ -18,7 +18,6 @@ public class Main extends Application {
         primaryStage.setTitle("World of Desert");
 
 
-
         primaryStage.setScene(new Scene(root, 800, 675));
         primaryStage.show();
 

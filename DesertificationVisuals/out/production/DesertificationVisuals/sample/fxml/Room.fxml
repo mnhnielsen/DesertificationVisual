@@ -1,51 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="618.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.RoomController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.RoomController">
    <children>
       <ImageView fx:id="background" fitHeight="411.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/EntryRoom.png" />
          </image>
       </ImageView>
-      <GridPane gridLinesVisible="true">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <Button fx:id="North" layoutX="67.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#goNorth" text="Go North" />
-      <Button fx:id="East" layoutX="133.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#goNorth" text="Go East" />
-      <Button fx:id="South" layoutX="67.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#goNorth" text="Go South" />
-      <Button fx:id="West" layoutX="1.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#goNorth" text="Go West" />
+      <Button fx:id="North" layoutX="67.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#roomDirection" text="Go North" />
+      <Button fx:id="East" layoutX="133.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#roomDirection" text="Go East" />
+      <Button fx:id="South" layoutX="67.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#roomDirection" text="Go South" />
+      <Button fx:id="West" layoutX="1.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#roomDirection" text="Go West" />
       <Text layoutX="626.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room: ">
          <font>
             <Font size="18.0" />
@@ -86,10 +59,10 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="RoomInfo" layoutX="710.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#roomInfo" text="Room Info" />
       <Button layoutX="274.0" layoutY="434.0" mnemonicParsing="false" text="Pickup" />
       <Button layoutX="278.0" layoutY="474.0" mnemonicParsing="false" text="Plant" />
-      <Button layoutX="502.0" layoutY="474.0" mnemonicParsing="false" text="Sell" />
-      <Button layoutX="502.0" layoutY="434.0" mnemonicParsing="false" text="Buy" />
+      <Button layoutX="364.0" layoutY="474.0" mnemonicParsing="false" text="Sell" />
+      <Button layoutX="364.0" layoutY="434.0" mnemonicParsing="false" text="Buy" />
+      <TextArea fx:id="roomInfo" layoutX="191.0" layoutY="513.0" prefHeight="146.0" prefWidth="600.0" />
    </children>
 </AnchorPane>
