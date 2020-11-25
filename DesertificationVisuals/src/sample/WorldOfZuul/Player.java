@@ -1,6 +1,4 @@
-package WorldOfZuul;
-
-import java.util.ArrayList;
+package sample.WorldOfZuul;
 
 public class Player {
 

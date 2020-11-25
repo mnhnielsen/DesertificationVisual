@@ -1,4 +1,4 @@
-package WorldOfZuul;
+package sample.WorldOfZuul;
 
 import java.util.Scanner;
 
@@ -115,10 +115,10 @@ public class Game {
         System.out.println("Type '" + CommandWord.HELP + "' if you need assistance along the way!");
         System.out.println();
         player.printPlayerInventory();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(getCurrentRoom().getLongDescription());
     }
 
-    private boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         boolean wantToQuit = false;
         CommandWord commandWord = command.getCommandWord();
 
@@ -136,20 +136,20 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.PICKUP) {
-            if (currentRoom.getType() == 4 && currentRoom.containsTrash()) {
-                while (currentRoom.containsTrash()) {
+            if (getCurrentRoom().getType() == 4 && getCurrentRoom().containsTrash()) {
+                while (getCurrentRoom().containsTrash()) {
                     player.addTrash();
-                    currentRoom.removeTrash();
+                    getCurrentRoom().removeTrash();
                 }
                 player.printPlayerInventory();
-                currentRoom.printRoomInventory();
+                getCurrentRoom().printRoomInventory();
             } else {
                 System.out.println("Room contains no trash.");
             }
         } else if (commandWord == CommandWord.ROOMINFO) {
             printRoomInfo();
         } else if (commandWord == CommandWord.SELL) {
-           if(currentRoom.getType() == 3){
+           if(getCurrentRoom().getType() == 3){
                if (player.hasTrash()) {
                    player.sellTrash();
                    player.printPlayerInventory();
@@ -161,7 +161,7 @@ public class Game {
            }
 
         } else if (commandWord == CommandWord.BUY) {
-            if(currentRoom.getType() == 3){
+            if(getCurrentRoom().getType() == 3){
                 int coins = player.getCoins();
                 if (coins == 0) {
                     System.out.println("You do not have enough coins to buy any saplings.");
@@ -177,7 +177,7 @@ public class Game {
 
         } else if (commandWord == CommandWord.PLANT) {
             if (player.hasSapling()) {
-                if (currentRoom.getType() == 6) {
+                if (getCurrentRoom().getType() == 6) {
                     if (saplingCount1 < 3 && !desert1) {
                         player.plant();
                         System.out.println("A tree has been planted");
@@ -193,7 +193,7 @@ public class Game {
                     }
 
                 }
-                if (currentRoom.getType() == 8) {
+                if (getCurrentRoom().getType() == 8) {
                     if (saplingCount2 < 4 && !desert2) {
                         player.plant();
                         System.out.println("A tree has been planted");
@@ -209,7 +209,7 @@ public class Game {
                         System.out.println("Desertification in the eastern desert has been stopped");
                     }
                 }
-                if (currentRoom.getType() == 9) {
+                if (getCurrentRoom().getType() == 9) {
                     if (saplingCount3 < 5 && !desert3) {
                         player.plant();
                         System.out.println("A tree has been planted");
@@ -230,7 +230,7 @@ public class Game {
             if (!player.hasSapling()) {
                 System.out.println("You don't have any saplings");
             }
-            if(currentRoom.getType() != 6 && currentRoom.getType() != 8 && currentRoom.getType() != 9) {
+            if(getCurrentRoom().getType() != 6 && getCurrentRoom().getType() != 8 && getCurrentRoom().getType() != 9) {
                 System.out.println("You can't plant here");
             }
             player.printPlayerInventory();
@@ -242,7 +242,7 @@ public class Game {
     private void endRoom() {
         boolean isAnswered = false;
 
-        if (currentRoom.getType() == 7) {
+        if (getCurrentRoom().getType() == 7) {
             if (desert1 && desert2 && desert3) {
                 boolean question1 = false, question2 = false, question3 = false;
 
@@ -261,9 +261,9 @@ public class Game {
                         question1 = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = currentRoom.getExit("south");
+                        currentRoom = getCurrentRoom().getExit("south");
                         System.out.println();
-                        System.out.println(currentRoom.getLongDescription());
+                        System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
                 System.out.println("Here is the second question");
@@ -279,9 +279,9 @@ public class Game {
                         question2 = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = currentRoom.getExit("south");
+                        currentRoom = getCurrentRoom().getExit("south");
                         System.out.println();
-                        System.out.println(currentRoom.getLongDescription());
+                        System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
                 System.out.println("Here is the last question");
@@ -298,16 +298,16 @@ public class Game {
                         isAnswered = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = currentRoom.getExit("south");
+                        currentRoom = getCurrentRoom().getExit("south");
                         System.out.println();
-                        System.out.println(currentRoom.getLongDescription());
+                        System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
             } else {
                 System.out.println("You need to stop the desertification before you can end the game.");
-                currentRoom = currentRoom.getExit("south");
+                currentRoom = getCurrentRoom().getExit("south");
                 System.out.println();
-                System.out.println(currentRoom.getLongDescription());
+                System.out.println(getCurrentRoom().getLongDescription());
             }
         }
         if (isAnswered) {
@@ -322,7 +322,7 @@ public class Game {
     }
 
     private void printRoomInfo() {
-        switch (currentRoom.getType()) {
+        switch (getCurrentRoom().getType()) {
             case 1: {
                 System.out.println("This is the entry room \n " +
                         " here you can information about desertification... and not much else :)  \b ");
@@ -384,7 +384,7 @@ public class Game {
         parser.showCommands();
     }
 
-    private void goRoom(Command command) {
+    public void goRoom(Command command) {
 
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -392,21 +392,21 @@ public class Game {
         }
 
         String direction = command.getSecondWord();
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
-            player.printPlayerInventory();
+            //player.printPlayerInventory();
             System.out.println();
             if (nextRoom != null && nextRoom.getType() == 4) {
                 nextRoom.printRoomInventory();
             }
             if (nextRoom.getType() == 7) {
-                System.out.print(currentRoom.getShortDescription());
+                System.out.print(getCurrentRoom().getShortDescription());
             } else {
-                System.out.println(currentRoom.getLongDescription());
+                System.out.println(getCurrentRoom().getLongDescription());
             }
         }
     }
@@ -418,5 +418,13 @@ public class Game {
         } else {
             return true;
         }
+    }
+
+    public String getRoomInfo(){
+        return getCurrentRoom().getLongDescription();
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 }

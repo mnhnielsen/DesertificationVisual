@@ -11,10 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.beans.EventHandler;
-import java.lang.invoke.SwitchPoint;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
 

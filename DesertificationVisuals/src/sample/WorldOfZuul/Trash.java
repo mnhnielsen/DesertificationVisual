@@ -1,10 +1,9 @@
-package WorldOfZuul;
+package sample.WorldOfZuul;
 
-public class Sapling extends Item {
-    
+public class Trash extends Item {
 
-    public Sapling() {
-        super("Sapling", 5, 1);
+    public Trash() {
+        super("Trash", 1, 1);
     }
 
 

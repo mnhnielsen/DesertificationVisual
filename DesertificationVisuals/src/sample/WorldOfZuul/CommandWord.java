@@ -1,4 +1,4 @@
-package WorldOfZuul;
+package sample.WorldOfZuul;
 
 public enum CommandWord
 {
