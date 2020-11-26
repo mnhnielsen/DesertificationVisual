@@ -3,6 +3,7 @@ package sample.controllers;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,9 +13,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
+
+import java.io.File;
 
 
 public class RoomController {
@@ -77,8 +83,10 @@ public class RoomController {
     }
 
 
-    public void setBackground() {
-        if (game.getCurrentRoom().getType() == 2) {
+    public void setBackground()
+    {
+        if (game.getCurrentRoom().getType() == 2)
+        {
             background.setImage(new Image("Resources/TutorialRoom.png"));
         }else if(game.getCurrentRoom().getType() == 3){
             background.setImage(new Image("Resources/CurrencyRoom.png"));
@@ -142,6 +150,13 @@ public class RoomController {
         anchorPane.getChildren().add(addTrash());
         AnchorPane.setTopAnchor(getTrashId(id), x);
         AnchorPane.setLeftAnchor(getTrashId(id), y);
+    }
+    public void PlaySound()
+    {
+        String bip = "Resources/Megalovania.mp3";
+        Media hit = new Media(new File(bip).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
     }
 
 }

@@ -17,7 +17,6 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Room.fxml"));
         primaryStage.setTitle("World of Desert");
 
-
         primaryStage.setScene(new Scene(root, 800, 675));
 
         primaryStage.show();
