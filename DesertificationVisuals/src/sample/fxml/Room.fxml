@@ -34,7 +34,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="626.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trash:">
+      <Text fx:id="inventoryTrash" layoutX="626.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trash:">
          <font>
             <Font size="18.0" />
          </font>
@@ -59,7 +59,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="274.0" layoutY="434.0" mnemonicParsing="false" text="Pickup" />
       <Button layoutX="278.0" layoutY="474.0" mnemonicParsing="false" text="Plant" />
       <Button layoutX="364.0" layoutY="474.0" mnemonicParsing="false" text="Sell" />
       <Button layoutX="364.0" layoutY="434.0" mnemonicParsing="false" text="Buy" />

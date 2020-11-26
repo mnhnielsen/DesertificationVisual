@@ -36,6 +36,9 @@ public class RoomController {
 
     private static int trashCount = 1;
     public Inventory inventory = new Inventory();
+    public Text inventoryTrash;
+    public Text Coins;
+    public Text Saplings;
 
 
     Game game = new Game();
@@ -113,6 +116,7 @@ public class RoomController {
             public void handle(MouseEvent mouseEvent) {
                 anchorPane.getChildren().remove(trash);
                 inventory.addTrash();
+                Trash.setText(""+inventory.countTrash());
             }
         });
 
