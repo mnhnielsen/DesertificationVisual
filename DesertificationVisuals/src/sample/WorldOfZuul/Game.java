@@ -288,56 +288,44 @@ public class Game {
     public void printRoomInfo() {
         switch (getCurrentRoom().getType()) {
             case 1: {
-                System.out.println( ("This is the entry room \n " +
-                        " here you can information about desertification... and not much else :)  \b "));
+                System.out.println(Strings.entryRoomtxt());
                 break;
             }
             case 2: {
-                System.out.println("This is the tutorial room! Here are some basics about the game:  \n " +
-                        "           Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant \n" +
-                        "           use commandword help & roominfo for specific info on the current room");
+                System.out.println(Strings.TutorialRoomtxt());
                 break;
             }
             case 3: {
-                System.out.println("This is the CurrencyRoom, here you can sell your collected trash for coins \n and buy saplings for planting, commandwords are: buy & sell");
-                break;
+                System.out.println(Strings.CurrencyRoomtxt());
             }
             case 4,11: {
-                System.out.println("This is the room where you collect trash.\n Collected trash can be sold for coins in the CurrencyRoom, commandwords are: pickup");
+                System.out.println(Strings.CurrencyCollecttxt());
                 break;
             }
             case 5: {
-                System.out.println("This is the desertbase, this room will guide you to the other rooms");
-                break;
+                System.out.println(Strings.DesertBasetxt());
             }
             case 6: {
                 //desert1
-                System.out.println("This is the desert! Here your job is to plant your saplings to stop desertification, commandword is: plant");
-                System.out.println("The desertification is spreading in this room.\n" +
-                        " Unlike natural deserts, which contain their own ecosystem, deserts created from the result of desertification are lifeless.\n" +
-                        " The soil lacks nutrients and therefore not even microorganisms can thrive in it.");
+                System.out.println(Strings.Deserttxt());
+                System.out.println(Strings.Desert1txt());
                 break;
             }
             case 8: {
                 //desert2
-                System.out.println("This is the desert! Here your job is to plant your saplings to stop desertification, commandword is: plant");
-                System.out.println("The desertification is spreading in this room. \n" +
-                        "The soil has eroded from the result of overgrazing the land with livestock and from planting crops on the same land excessively.\n" +
-                        " This overexploitation drains the soil of nutrients and results in “soil death”.");
+                System.out.println(Strings.Deserttxt());
+                System.out.println(Strings.Desert2txt());
                 break;
             }
             case 9: {
                 //desert3
-                System.out.println("This is the desert! Here your job is to plant your saplings to stop desertification, commandword is: plant");
-                System.out.println("The desertification is spreading in this room. \n" +
-                        "Just like it is worldwide. Because of the rising world population, the demand for food, and in turn livestock and crops, is also increasing.\n" +
-                        " This leads to overexploitation of fertile soil and eventually the spread of desertification.");
+                System.out.println(Strings.Deserttxt());
+                System.out.println(Strings.Desert3txt());
                 break;
             }
 
             case 7: {
-                System.out.println("This is the endRoom. You have planted all the saplings required. " +
-                        "\n You will now be quizzed about desertification");
+                System.out.println(Strings.endRoomtxt());
                 break;
             }
         }

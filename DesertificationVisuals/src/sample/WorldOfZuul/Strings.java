@@ -90,7 +90,54 @@ public class Strings {
         return ("in the first desert. Stop the desertification\n" +
                 "Use commandword: roominfo for information about desertification");
     }
-
-
-    
+    public static String entryRoomtxt()
+    {
+        return ("This is the entry room \n " +
+                " here you can information about desertification... and not much else :)  \b ");
+    }
+    public static String TutorialRoomtxt()
+    {
+        return ("This is the tutorial room! Here are some basics about the game:  \n " +
+                "           Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant \n" +
+                "           use commandword help & roominfo for specific info on the current room");
+    }
+    public static String CurrencyRoomtxt()
+    {
+        return ("This is the CurrencyRoom, here you can sell your collected trash for coins \n and buy saplings for planting, commandwords are: buy & sell");
+    }
+    public static String CurrencyCollecttxt()
+    {
+        return ("This is the room where you collect trash.\n Collected trash can be sold for coins in the CurrencyRoom, commandwords are: pickup");
+    }
+    public static String DesertBasetxt()
+    {
+        return ("This is the desertbase, this room will guide you to the other rooms");
+    }
+    public static String Deserttxt()
+    {
+        return ("This is the desert! Here your job is to plant your saplings to stop desertification, commandword is: plant");
+    }
+    public static String Desert1txt()
+    {
+        return ("The desertification is spreading in this room.\n" +
+                " Unlike natural deserts, which contain their own ecosystem, deserts created from the result of desertification are lifeless.\n" +
+                " The soil lacks nutrients and therefore not even microorganisms can thrive in it.");
+    }
+    public static String Desert2txt()
+    {
+        return ("The desertification is spreading in this room. \n" +
+                "The soil has eroded from the result of overgrazing the land with livestock and from planting crops on the same land excessively.\n" +
+                " This overexploitation drains the soil of nutrients and results in “soil death”.");
+    }
+    public static String Desert3txt()
+    {
+        return ("The desertification is spreading in this room. \n" +
+                "Just like it is worldwide. Because of the rising world population, the demand for food, and in turn livestock and crops, is also increasing.\n" +
+                " This leads to overexploitation of fertile soil and eventually the spread of desertification.");
+    }
+    public static String endRoomtxt()
+    {
+        return ("This is the endRoom. You have planted all the saplings required. " +
+                "\n You will now be quizzed about desertification");
+    }
 }
