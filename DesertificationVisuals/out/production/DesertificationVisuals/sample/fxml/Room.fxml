@@ -63,5 +63,6 @@
       <Button layoutX="364.0" layoutY="474.0" mnemonicParsing="false" text="Sell" />
       <Button layoutX="364.0" layoutY="434.0" mnemonicParsing="false" text="Buy" />
       <TextArea fx:id="roomInfo" layoutX="191.0" layoutY="513.0" prefHeight="146.0" prefWidth="600.0" />
+      <Button fx:id="shop" layoutX="480.0" layoutY="434.0" mnemonicParsing="false" onAction="#openShop" text="Open Shop" />
    </children>
 </AnchorPane>

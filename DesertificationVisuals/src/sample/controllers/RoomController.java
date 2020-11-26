@@ -1,6 +1,7 @@
 package sample.controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -34,11 +35,12 @@ public class RoomController {
     public Text Trash;
     public AnchorPane anchorPane;
 
-    private static int trashCount = 1;
+    private static int trashCount = 0;
     public Inventory inventory = new Inventory();
     public Text inventoryTrash;
     public Text Coins;
     public Text Saplings;
+    public Button shop;
 
 
     Game game = new Game();
@@ -82,11 +84,13 @@ public class RoomController {
             background.setImage(new Image("Resources/TutorialRoom.png"));
         }else if(game.getCurrentRoom().getType() == 3){
             background.setImage(new Image("Resources/CurrencyRoom.png"));
+            removeTrashFromRoom();
         }else if(game.getCurrentRoom().getType() == 4){
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
             addTrashToRoom(50, 50, "t1");
             addTrashToRoom(100, 100, "t2");
             addTrashToRoom(300, 600, "t3");
+            System.out.println(trashCount);
         }else if(game.getCurrentRoom().getType() == 5){
             background.setImage(new Image("Resources/DesertBaseRoom.png"));
         }else if(game.getCurrentRoom().getType() == 6){
@@ -108,8 +112,9 @@ public class RoomController {
         ImageView trash = new ImageView(new Image("Resources/trash.png"));
         trash.setFitHeight(50);
         trash.setFitWidth(50);
-        trash.setId("t"+trashCount);
         trashCount++;
+        trash.setId("t"+trashCount);
+
 
         trash.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -144,4 +149,26 @@ public class RoomController {
         AnchorPane.setLeftAnchor(getTrashId(id), y);
     }
 
+    public void openShop(ActionEvent actionEvent) {
+        if(actionEvent.getSource()==shop){
+            if(game.getCurrentRoom().getType() == 3){
+                Stage stage = new Stage();
+            }else{
+
+            }
+        }
+    }
+
+    public void removeTrashFromRoom(){
+        for (int i = 1; i <= trashCount; i++) {
+            for (Node node :
+                anchorPane.getChildren()) {
+                if(node.getId() != null && node.getId().equals("t"+i)){
+                    anchorPane.getChildren().remove(node);
+                    break;
+                }
+            }
+        }
+
+    }
 }
