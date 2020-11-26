@@ -27,22 +27,22 @@ public class shopController {
     public void onAction(ActionEvent actionEvent) {
 
         if(actionEvent.getSource() == sellButton){
-            RoomController.trash--;
+            RoomController.inventory.removeTrash();
             RoomController.coins++;
             updateText();
 
         }
         else if(actionEvent.getSource() == buyButton){
-            RoomController.coins++;
-            RoomController.saplings++;
+            RoomController.coins--;
+            RoomController.inventory.addSapling();
             updateText();
         }
     }
 
     private void updateText(){
         coinLabel.setText(""+RoomController.coins);
-        trashLabel.setText(""+RoomController.trash);
-        saplingLabel.setText(""+RoomController.saplings);
+        trashLabel.setText(""+RoomController.inventory.countTrash());
+        saplingLabel.setText(""+RoomController.inventory.countSapling());
     }
 
 
