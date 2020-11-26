@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.RoomController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.shopController">
    <children>
       <HBox prefHeight="150.0" prefWidth="200.0" spacing="50.0">
          <children>
@@ -21,12 +21,12 @@
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label alignment="CENTER" text="0" textAlignment="CENTER">
+            <Label fx:id="trashLabel" alignment="CENTER" text="0" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Sell">
+            <Button fx:id="sellButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAction" text="Sell">
                <font>
                   <Font size="25.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label alignment="CENTER" text="0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label fx:id="saplingLabel" alignment="CENTER" text="0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="30.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="Buy" HBox.hgrow="ALWAYS">
+            <Button fx:id="buyButton" mnemonicParsing="false" onAction="#onAction" text="Buy" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="25.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label alignment="CENTER" text="0" textAlignment="CENTER">
+            <Label fx:id="coinLabel" alignment="CENTER" text="0" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>

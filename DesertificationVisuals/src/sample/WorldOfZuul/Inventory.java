@@ -70,6 +70,7 @@ public class Inventory {
         int[] ints = new int[2];
         ints[0] = saplingCount;
         ints[1] = trashCount;
+
         return ints;
     }
 

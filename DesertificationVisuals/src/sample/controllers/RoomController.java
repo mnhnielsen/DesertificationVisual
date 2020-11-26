@@ -4,7 +4,9 @@ package sample.controllers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -17,8 +19,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
 
+import java.io.IOException;
+
 
 public class RoomController {
+
 
     @FXML
     public ImageView background;
@@ -36,7 +41,11 @@ public class RoomController {
     public AnchorPane anchorPane;
 
     private static int trashCount = 0;
-    public Inventory inventory = new Inventory();
+    public static int coins = 0;
+    public static int saplings = 0;
+    public static int trash = 0;
+
+    public static Inventory inventory = new Inventory();
     public Text inventoryTrash;
     public Text Coins;
     public Text Saplings;
@@ -149,11 +158,19 @@ public class RoomController {
         AnchorPane.setLeftAnchor(getTrashId(id), y);
     }
 
-    public void openShop(ActionEvent actionEvent) {
+    public void openShop(ActionEvent actionEvent) throws IOException {
         if(actionEvent.getSource()==shop){
             if(game.getCurrentRoom().getType() == 3){
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../fxml/shop.fxml"));
+
+                Scene scene = new Scene(fxmlLoader.load(), 400, 300);
                 Stage stage = new Stage();
-            }else{
+
+                stage.setTitle("Shop");
+                stage.setScene(scene);
+                stage.show();
 
             }
         }
@@ -169,6 +186,8 @@ public class RoomController {
                 }
             }
         }
-
+        trashCount=0;
     }
+
+
 }
