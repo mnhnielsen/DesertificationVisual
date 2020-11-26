@@ -1,14 +1,18 @@
 package sample.controllers;
 
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
 
@@ -27,6 +31,12 @@ public class RoomController {
     public Button South;
     @FXML
     public TextArea roomInfo;
+    public Text Trash;
+    public AnchorPane anchorPane;
+
+    private static int trashCount = 1;
+    public Inventory inventory = new Inventory();
+
 
     Game game = new Game();
 
@@ -60,7 +70,9 @@ public class RoomController {
             setRoomInfo();
             setBackground();
         }
+
     }
+
 
     public void setBackground() {
         if (game.getCurrentRoom().getType() == 2) {
@@ -69,6 +81,9 @@ public class RoomController {
             background.setImage(new Image("Resources/CurrencyRoom.png"));
         }else if(game.getCurrentRoom().getType() == 4){
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
+            addTrashToRoom(50, 50, "t1");
+            addTrashToRoom(100, 100, "t2");
+            addTrashToRoom(300, 600, "t3");
         }else if(game.getCurrentRoom().getType() == 5){
             background.setImage(new Image("Resources/DesertBaseRoom.png"));
         }else if(game.getCurrentRoom().getType() == 6){
@@ -86,5 +101,43 @@ public class RoomController {
 
     }
 
+    public ImageView addTrash(){
+        ImageView trash = new ImageView(new Image("Resources/trash.png"));
+        trash.setFitHeight(50);
+        trash.setFitWidth(50);
+        trash.setId("t"+trashCount);
+        trashCount++;
+
+        trash.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                anchorPane.getChildren().remove(trash);
+                inventory.addTrash();
+            }
+        });
+
+
+        return trash;
+    }
+
+    public Node getTrashId(String id){
+        for (Node node :
+                anchorPane.getChildren()) {
+            if(node.getId() != null && node.getId().equals(id)){
+                return node;
+            }
+        }
+        return null;
+    }
+
+
+    // xlimit = 350, ylimit = 550
+    public void addTrashToRoom(double x, double y, String id){
+        if(x>350) x = 350;
+        if(y>550) y = 550;
+        anchorPane.getChildren().add(addTrash());
+        AnchorPane.setTopAnchor(getTrashId(id), x);
+        AnchorPane.setLeftAnchor(getTrashId(id), y);
+    }
 
 }
