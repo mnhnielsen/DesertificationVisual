@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
-
+import java.util.Random;
 
 public class RoomController {
 
@@ -65,26 +65,24 @@ public class RoomController {
     public void setBackground() {
         if (game.getCurrentRoom().getType() == 2) {
             background.setImage(new Image("Resources/TutorialRoom.png"));
-        }else if(game.getCurrentRoom().getType() == 3){
+        } else if (game.getCurrentRoom().getType() == 3) {
             background.setImage(new Image("Resources/CurrencyRoom.png"));
-        }else if(game.getCurrentRoom().getType() == 4){
+        } else if (game.getCurrentRoom().getType() == 4) {
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
-        }else if(game.getCurrentRoom().getType() == 5){
+        } else if (game.getCurrentRoom().getType() == 5) {
             background.setImage(new Image("Resources/DesertBaseRoom.png"));
-        }else if(game.getCurrentRoom().getType() == 6){
+        } else if (game.getCurrentRoom().getType() == 6) {
             background.setImage(new Image("Resources/DesertLeft.png"));
-        }else if(game.getCurrentRoom().getType() == 8){
+        } else if (game.getCurrentRoom().getType() == 8) {
             background.setImage(new Image("Resources/DesertRight.png"));
-        }else if(game.getCurrentRoom().getType() == 9){
+        } else if (game.getCurrentRoom().getType() == 9) {
             background.setImage(new Image("Resources/DesertTop.png"));
-        }else if(game.getCurrentRoom().getType() == 1){
+        } else if (game.getCurrentRoom().getType() == 1) {
             background.setImage(new Image("Resources/EntryRoom.png"));
-        }else if(game.getCurrentRoom().getType() == 11){
+        } else if (game.getCurrentRoom().getType() == 11) {
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
         }
 
+        }
 
     }
-
-
-}
