@@ -24,26 +24,20 @@ public class Game {
                 currencyObtainRoom1, currencyObtainRoom, desertBaseRoom, desert1,
                 desert2, desert3, endRoom;
 
-        entry = new Room("At the entry room. To start the game type: go north", 1);
-        tutorial = new Room("in the tutorial room. Here you can learn how to play the game. " +
-                "\nHere are some basics about the game:\n" +
-                "Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant \n" +
-                "use commandword: help & roominfo for specific info on the current room", 2);
-        currencyRoom = new Room("in the vendor room. Here you can exchange your trash for saplings", 3);
+        entry = new Room(Strings.EntryRoomDescription(), 1);
+        tutorial = new Room(Strings.TutorialRoomDescription(), 2);
+        currencyRoom = new Room(Strings.CurrencyRoomDescription(), 3);
 
-        currencyObtainRoom = new Room("trash room. Here you can harvest trash using the commandword: pickup", 4);
+        currencyObtainRoom = new Room(Strings.CurrencyObtainRoomDescription(), 4);
         currencyObtainRoom.addTrash(8);
 
-        currencyObtainRoom1 = new Room("trash room. Here you can harvest trash using the commandword: pickup", 11);
+        currencyObtainRoom1 = new Room(Strings.CurrencyObtainRoomDescription(), 11);
         currencyObtainRoom1.addTrash(5);
 
-        desertBaseRoom = new Room("in the desert base room. Choose a direction to go to a desert", 5);
-        desert1 = new Room("in the first desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 6);
-        desert2 = new Room("in the second desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 8);
-        desert3 = new Room("in the third desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 9);
+        desertBaseRoom = new Room(Strings.DesertBaseRoomDescription(), 5);
+        desert1 = new Room(Strings.DesertInfo(), 6);
+        desert2 = new Room(Strings.DesertInfo(), 8);
+        desert3 = new Room(Strings.DesertInfo(), 9);
         endRoom = new Room("", 7);
 
 
@@ -233,12 +227,7 @@ public class Game {
             if (desert1 && desert2 && desert3) {
                 boolean question1 = false, question2 = false, question3 = false;
 
-                System.out.println("You are almost finished. You need to answer the following questions correctly. Type A,B,C or D to give your answer.\n");
-                System.out.println("Question 1: What is the main difference between natural deserts and those created by desertification?");
-                System.out.println("A: Natural deserts contain their own ecosystem, while those created by desertification are lifeless.");
-                System.out.println("B: Natural deserts are lifeless, while those created by desertification contain their own ecosystem.");
-                System.out.println("C: In a natural desert, the temperature is much higher, which results in soil erosion.");
-                System.out.println("D: There is no difference.");
+                System.out.println(Strings.Question1());
 
 
                 while (!question1) {
@@ -253,12 +242,7 @@ public class Game {
                         System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
-                System.out.println("Here is the second question");
-                System.out.println("Question 2: What is the main factor resulting in “soil death”?");
-                System.out.println("A: Excessive watering of the soil, which drowns the plant life and flushes the nutrients away, resulting in “soil death”.");
-                System.out.println("B: People using the land to create desert golf fields, resulting in “soil death”.");
-                System.out.println("C: Overgrazing the land with livestock, and planting crops on the same land excessively, hereby draining the soil of nutrients, and resulting in “soil death”.");
-                System.out.println("D: Radioactive rays from the sun “kills” the nutrients in the soil, hereby resulting in “soil death”.");
+                System.out.println(Strings.Question2());
                 while (!question2) {
                     System.out.print(">");
                     if (input.nextLine().equalsIgnoreCase("C")) {
@@ -271,12 +255,7 @@ public class Game {
                         System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
-                System.out.println("Here is the last question");
-                System.out.println("Question 3: What leads to overexploitation of fertile soil?");
-                System.out.println("A: The rising world population.");
-                System.out.println("B: The demand for food.");
-                System.out.println("C: The increase in livestock and crops.");
-                System.out.println("D: A combination of all of the above.");
+                System.out.println(Strings.Question3());
                 while (!question3) {
                     System.out.print(">");
                     if (input.nextLine().equalsIgnoreCase("D")) {
@@ -303,9 +282,7 @@ public class Game {
     }
 
     private void printInfo() {
-        System.out.println("You need to help stop the desertification");
-        System.out.println("to help you need to plant saplings in the desert");
-        System.out.println("To get saplings you need to pick up trash to sell in the CurrencyObtainRoom");
+        System.out.println(Strings.Info());
     }
 
     public void printRoomInfo() {
