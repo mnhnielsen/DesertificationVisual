@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
 
@@ -448,7 +449,9 @@ public class RoomController {
                 stage.setTitle("Shop");
                 stage.setScene(scene);
                 stage.setOnHiding(event-> updateText());
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
+
 
             }
         }
