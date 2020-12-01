@@ -50,6 +50,23 @@ public class Room
         return "You are " + description + ".\n\n" + getExitString();
     }
 
+    public String getRoomName(int type){
+        switch(type){
+            case 2:
+                return "Welcome Room";
+            case 3:
+                return "Vendor Room";
+            case 4, 11:
+                return "Trash Room";
+            case 5:
+                return "Desert Base Room";
+            case 6, 8, 9:
+                return "Desert";
+
+        }
+        return null;
+    }
+
     private String getExitString()
     {
         String returnString = "Exits:";

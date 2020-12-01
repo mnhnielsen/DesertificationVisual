@@ -53,6 +53,7 @@ public class RoomController {
     public Text Coins;
     public Text Saplings;
     public Button shop;
+    public Text Room;
 
     private Map<String, ImageView > itemMap6 = new HashMap<>();
     private Map<String, ImageView > itemMap8 = new HashMap<>();
@@ -109,6 +110,7 @@ public class RoomController {
 
 
     public void setBackground() {
+        Room.setText(game.getCurrentRoom().getRoomName(game.getCurrentRoom().getType()));
         if (game.getCurrentRoom().getType() == 2) {
             background.setImage(new Image("Resources/TutorialRoom.png"));
             showButtons(true,false,false,false,false);
@@ -183,6 +185,7 @@ public class RoomController {
         }else if(game.getCurrentRoom().getType() == 1){
             background.setImage(new Image("Resources/EntryRoom.png"));
             showButtons(true, false, false, false, false);
+
         }else if(game.getCurrentRoom().getType() == 11){
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
             showButtons(false, false, false, true, false);
@@ -195,6 +198,8 @@ public class RoomController {
 
 
     }
+
+
 
     public void showButtons(boolean north, boolean east, boolean south, boolean west, boolean vendor){
         North.setVisible(north);
