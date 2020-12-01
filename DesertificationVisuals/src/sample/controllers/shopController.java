@@ -26,13 +26,13 @@ public class shopController {
 
     public void onAction(ActionEvent actionEvent) {
 
-        if(actionEvent.getSource() == sellButton){
+        if(actionEvent.getSource() == sellButton && RoomController.inventory.hasTrash()){
             RoomController.inventory.removeTrash();
             RoomController.coins++;
             updateText();
 
         }
-        else if(actionEvent.getSource() == buyButton){
+        else if(actionEvent.getSource() == buyButton && RoomController.coins > 0){
             RoomController.coins--;
             RoomController.inventory.addSapling();
             updateText();

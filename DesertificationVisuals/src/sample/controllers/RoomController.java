@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -14,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.WorldOfZuul.*;
@@ -41,6 +39,7 @@ public class RoomController {
     public AnchorPane anchorPane;
 
     private static int trashCount = 0;
+    private static int soilCount = 0;
     public static int coins = 0;
     public static int saplings = 0;
     public static int trash = 0;
@@ -104,6 +103,7 @@ public class RoomController {
             background.setImage(new Image("Resources/DesertBaseRoom.png"));
         }else if(game.getCurrentRoom().getType() == 6){
             background.setImage(new Image("Resources/DesertLeft.png"));
+            addSoilToRoom(300, 210, "s1");
         }else if(game.getCurrentRoom().getType() == 8){
             background.setImage(new Image("Resources/DesertRight.png"));
         }else if(game.getCurrentRoom().getType() == 9){
@@ -138,7 +138,7 @@ public class RoomController {
         return trash;
     }
 
-    public Node getTrashId(String id){
+    public Node getItemId(String id){
         for (Node node :
                 anchorPane.getChildren()) {
             if(node.getId() != null && node.getId().equals(id)){
@@ -154,8 +154,35 @@ public class RoomController {
         if(x>350) x = 350;
         if(y>550) y = 550;
         anchorPane.getChildren().add(addTrash());
-        AnchorPane.setTopAnchor(getTrashId(id), x);
-        AnchorPane.setLeftAnchor(getTrashId(id), y);
+        AnchorPane.setTopAnchor(getItemId(id), x);
+        AnchorPane.setLeftAnchor(getItemId(id), y);
+    }
+    public ImageView addSoil(){
+        ImageView soil = new ImageView(new Image("Resources/Soil.png"));
+        soilCount++;
+        soil.setId("s"+soilCount);
+
+        soil.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                anchorPane.getChildren().remove(soil);
+
+                inventory.removeSapling();
+                //Trash.setText(""+inventory.countTrash());
+            }
+        });
+
+
+        return soil;
+    }
+
+    // xlimit = 350, ylimit = 550
+    public void addSoilToRoom(double x, double y, String id){
+        if(x>350) x = 350;
+        if(y>550) y = 550;
+        anchorPane.getChildren().add(addSoil());
+        AnchorPane.setTopAnchor(getItemId(id), x);
+        AnchorPane.setLeftAnchor(getItemId(id), y);
     }
 
     public void openShop(ActionEvent actionEvent) throws IOException {
