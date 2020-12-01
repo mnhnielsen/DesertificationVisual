@@ -197,10 +197,17 @@ public class RoomController {
 
                 stage.setTitle("Shop");
                 stage.setScene(scene);
+                stage.setOnHiding(event-> updateText());
                 stage.show();
 
             }
         }
+    }
+
+    public void updateText(){
+        Coins.setText(""+coins);
+        Trash.setText(""+inventory.countTrash());
+        Saplings.setText(""+inventory.countSapling());
     }
 
     public void removeTrashFromRoom(){
