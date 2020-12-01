@@ -110,29 +110,36 @@ public class RoomController {
     public void setBackground() {
         if (game.getCurrentRoom().getType() == 2) {
             background.setImage(new Image("Resources/TutorialRoom.png"));
+            showButtons(true,false,false,false,false);
 
             makeHashMaps(3,4,5);
 
         }else if(game.getCurrentRoom().getType() == 3){
             background.setImage(new Image("Resources/CurrencyRoom.png"));
+
+            showButtons(true,true,true,true,true);
+
             removeTrashFromRoom();
 
         }else if(game.getCurrentRoom().getType() == 4){
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
+            showButtons(false,true,false,false,false);
             addTrashToRoom(50, 50, "t1");
             addTrashToRoom(100, 100, "t2");
             addTrashToRoom(300, 600, "t3");
-            System.out.println(trashCount);
+
+
         }else if(game.getCurrentRoom().getType() == 5){
 
             removeSoilFromRoom(previousRoomType);
-
             previousRoomType = 0;
             background.setImage(new Image("Resources/DesertBaseRoom.png"));
+            showButtons(true,true,true,true,false);
 
 
         }else if(game.getCurrentRoom().getType() == 6){
             background.setImage(new Image("Resources/DesertLeft.png"));
+            showButtons(false,true,false,false,false);
 
 
             if(first6){
@@ -146,6 +153,7 @@ public class RoomController {
 
         }else if(game.getCurrentRoom().getType() == 8){
             background.setImage(new Image("Resources/DesertRight.png"));
+            showButtons(false,false,false,true,false);
 
             if(first8){
                 addSoilsToRoom(8);
@@ -158,6 +166,7 @@ public class RoomController {
 
         }else if(game.getCurrentRoom().getType() == 9){
             background.setImage(new Image("Resources/DesertTop.png"));
+            showButtons(false, false, true, false,false);
 
             if(first9){
                 addSoilsToRoom(9);
@@ -170,11 +179,22 @@ public class RoomController {
 
         }else if(game.getCurrentRoom().getType() == 1){
             background.setImage(new Image("Resources/EntryRoom.png"));
+            showButtons(true, false, false, false, false);
         }else if(game.getCurrentRoom().getType() == 11){
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
+            showButtons(false, false, false, true, false);
+            shop.setVisible(false);
         }
 
 
+    }
+
+    public void showButtons(boolean north, boolean east, boolean south, boolean west, boolean vendor){
+        North.setVisible(north);
+        East.setVisible(east);
+        South.setVisible(south);
+        West.setVisible(west);
+        shop.setVisible(vendor);
     }
 
     private void makeHashMaps(int roomLeft, int roomRight, int roomTop) {

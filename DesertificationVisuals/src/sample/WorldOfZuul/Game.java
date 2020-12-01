@@ -394,10 +394,13 @@ public class Game {
         String direction = command.getSecondWord();
         Room nextRoom = getCurrentRoom().getExit(direction);
 
+        if(nextRoom.getType() == 7) nextRoom = currentRoom;
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
+
             //player.printPlayerInventory();
             System.out.println();
             if (nextRoom != null && nextRoom.getType() == 4) {
