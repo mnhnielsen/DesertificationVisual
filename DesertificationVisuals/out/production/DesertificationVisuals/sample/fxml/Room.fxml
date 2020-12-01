@@ -44,17 +44,17 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="Saplings" layoutX="704.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
+      <Text fx:id="Saplings" layoutX="704.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="Trash" layoutX="690.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
+      <Text fx:id="Trash" layoutX="690.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="Coins" layoutX="688.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
+      <Text fx:id="Coins" layoutX="688.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
          <font>
             <Font size="18.0" />
          </font>

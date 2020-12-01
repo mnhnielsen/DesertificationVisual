@@ -124,9 +124,12 @@ public class RoomController {
         }else if(game.getCurrentRoom().getType() == 4){
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
             showButtons(false,true,false,false,false);
-            addTrashToRoom(50, 50, "t1");
-            addTrashToRoom(100, 100, "t2");
-            addTrashToRoom(300, 600, "t3");
+
+
+
+            addTrashToRoom(Math.random()*600, Math.random()*350, "t1");
+            addTrashToRoom(Math.random()*550, Math.random()*350, "t2");
+            addTrashToRoom(Math.random()*450 + 100, Math.random()*350, "t3");
 
 
         }else if(game.getCurrentRoom().getType() == 5){
@@ -140,7 +143,6 @@ public class RoomController {
         }else if(game.getCurrentRoom().getType() == 6){
             background.setImage(new Image("Resources/DesertLeft.png"));
             showButtons(false,true,false,false,false);
-
 
             if(first6){
                 addSoilsToRoom( 6);
@@ -183,7 +185,11 @@ public class RoomController {
         }else if(game.getCurrentRoom().getType() == 11){
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
             showButtons(false, false, false, true, false);
-            shop.setVisible(false);
+
+
+            addTrashToRoom(Math.random()*600, Math.random()*350, "t1");
+            addTrashToRoom(Math.random()*550, Math.random()*350, "t2");
+            addTrashToRoom(Math.random()*450 + 100, Math.random()*350, "t3");
         }
 
 
@@ -303,30 +309,31 @@ public class RoomController {
         soil.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                anchorPane.getChildren().remove(soil);
+                if(inventory.hasSapling()){
+                    anchorPane.getChildren().remove(soil);
+                    inventory.removeSapling();
+                    updateText();
 
-                inventory.removeSapling();
+                    ImageView sapling = addSapling();
+                    sapling.setId("p"+id);
 
-                ImageView sapling = addSapling();
-                sapling.setId("p"+id);
+                    anchorPane.getChildren().add(sapling);
+                    AnchorPane.setTopAnchor(sapling, mouseEvent.getSceneY() - 50);
+                    AnchorPane.setLeftAnchor(sapling, mouseEvent.getSceneX() - 25);
 
-                anchorPane.getChildren().add(sapling);
-                AnchorPane.setTopAnchor(sapling, mouseEvent.getSceneY() - 50);
-                AnchorPane.setLeftAnchor(sapling, mouseEvent.getSceneX() - 25);
+                    int currentroom = game.getCurrentRoom().getType();
 
-                int currentroom = game.getCurrentRoom().getType();
-
-                if(currentroom == 6){
-                    saplingMap6.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
-                    saplingMap6.remove(id);
-                }else if(currentroom == 8){
-                    saplingMap8.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
-                    saplingMap8.remove(id);
-                }else if(currentroom == 9){
-                    saplingMap9.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
-                    saplingMap9.remove(id);
+                    if(currentroom == 6){
+                        saplingMap6.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
+                        saplingMap6.remove(id);
+                    }else if(currentroom == 8){
+                        saplingMap8.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
+                        saplingMap8.remove(id);
+                    }else if(currentroom == 9){
+                        saplingMap9.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
+                        saplingMap9.remove(id);
+                    }
                 }
-
             }
         });
 
