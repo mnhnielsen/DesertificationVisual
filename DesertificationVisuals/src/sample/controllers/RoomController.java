@@ -110,6 +110,7 @@ public class RoomController {
     public void setBackground() {
         if (game.getCurrentRoom().getType() == 2) {
             background.setImage(new Image("Resources/TutorialRoom.png"));
+
             makeHashMaps(3,4,5);
 
         }else if(game.getCurrentRoom().getType() == 3){
@@ -138,7 +139,7 @@ public class RoomController {
                 addSoilsToRoom( 6);
                 first6 = false;
             }else{
-                keepSaplings(6);
+                keepItems(6);
             }
 
             previousRoomType = game.getCurrentRoom().getType();
@@ -150,7 +151,7 @@ public class RoomController {
                 addSoilsToRoom(8);
                 first8=false;
             }else{
-                keepSaplings(8);
+                keepItems(8);
             }
 
             previousRoomType = game.getCurrentRoom().getType();
@@ -162,9 +163,8 @@ public class RoomController {
                 addSoilsToRoom(9);
                 first9 = false;
             }else{
-                keepSaplings(9);
+                keepItems(9);
             }
-
 
             previousRoomType = game.getCurrentRoom().getType();
 
@@ -229,13 +229,9 @@ public class RoomController {
                     addSoilToRoom(250, y, "s9"+i);
                     saplingMap9.put("s9"+i, new double[]{250,y});
 
-
                 }
                 break;
-
         }
-
-
     }
 
     public ImageView addTrash(){
@@ -284,15 +280,12 @@ public class RoomController {
         soilCount++;
         soil.setId(id);
 
-
-
         soil.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 anchorPane.getChildren().remove(soil);
 
                 inventory.removeSapling();
-
 
                 ImageView sapling = addSapling();
                 sapling.setId("p"+id);
@@ -317,7 +310,6 @@ public class RoomController {
             }
         });
 
-
         return soil;
     }
 
@@ -330,12 +322,10 @@ public class RoomController {
         return sapling;
     }
 
-    public void keepSaplings(int type){
+    public void keepItems(int type){
 
         if(type == 6){
-
             saplingMap6.forEach( (k, v) ->{
-
                 if(k.startsWith("p")){
                     ImageView sapling = addSapling();
                     sapling.setId(k);
@@ -393,7 +383,6 @@ public class RoomController {
                 }
             });
         }
-
     }
 
     // xlimit = 350, ylimit = 550
@@ -460,7 +449,6 @@ public class RoomController {
     public void removeSoilFromRoom(int type){
 
         if(type == 6){
-
             for (int i = 1; i <= itemMap6.size(); i++) {
                 for (Node node :
                         anchorPane.getChildren()) {
@@ -505,8 +493,6 @@ public class RoomController {
                 }
             }
         }
-
-
 
         soilCount=0;
     }
