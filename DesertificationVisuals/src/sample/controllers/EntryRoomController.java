@@ -25,7 +25,7 @@ public class EntryRoomController
         fxmlLoader.setLocation(getClass().getResource("../fxml/Room.fxml"));
         Stage CurrentStage = (Stage) StartGame.getScene().getWindow();
 
-        Scene scene = new Scene(fxmlLoader.load(), 900, 675);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 800);
         Stage stage = new Stage();
         stage.setTitle("World of Zuul");
         stage.setScene(scene);

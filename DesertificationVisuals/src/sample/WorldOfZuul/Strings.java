@@ -153,20 +153,20 @@ public class Strings {
 
     public static String Desert1txt() {
         return ("The desertification is spreading in this room.\n" +
-                " Unlike natural deserts, which contain their own ecosystem, deserts created from the result of desertification are lifeless.\n" +
-                " The soil lacks nutrients and therefore not even microorganisms can thrive in it.");
+                "Unlike natural deserts, which contain their own ecosystem, deserts created from the result of desertification are lifeless.\n" +
+                "The soil lacks nutrients and therefore not even microorganisms can thrive in it.");
     }
 
     public static String Desert2txt() {
         return ("The desertification is spreading in this room. \n" +
                 "The soil has eroded from the result of overgrazing the land with livestock and from planting crops on the same land excessively.\n" +
-                " This overexploitation drains the soil of nutrients and results in “soil death”.");
+                "This overexploitation drains the soil of nutrients and results in “soil death”.");
     }
 
     public static String Desert3txt() {
         return ("The desertification is spreading in this room. \n" +
                 "Just like it is worldwide. Because of the rising world population, the demand for food, and in turn livestock and crops, is also increasing.\n" +
-                " This leads to overexploitation of fertile soil and eventually the spread of desertification.");
+                "This leads to overexploitation of fertile soil and eventually the spread of desertification.");
     }
 
     public static String endRoomtxt() {

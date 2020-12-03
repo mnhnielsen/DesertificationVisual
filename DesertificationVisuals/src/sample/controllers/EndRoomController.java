@@ -1,11 +1,16 @@
 package sample.controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import sample.WorldOfZuul.Strings;
+
+import java.io.IOException;
 
 public class EndRoomController {
 
@@ -98,7 +103,11 @@ public class EndRoomController {
             if (A4.isSelected()) {
                 status.setText("Correct Answer");
                 submit.setDisable(true);
-                exit();
+                try {
+                    exit();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             } else {
                 status.setText("Incorrect Answer, try again");
                 submit.setDisable(false);
@@ -106,7 +115,17 @@ public class EndRoomController {
         });
     }
 
-    public void exit() {
-        System.exit(0);
+    public void exit() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../fxml/win.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Stage stage = new Stage();
+        stage.setTitle("World of Zuul");
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 }

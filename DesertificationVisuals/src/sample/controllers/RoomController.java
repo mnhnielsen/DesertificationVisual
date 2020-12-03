@@ -92,11 +92,22 @@ public class RoomController {
         game.goRoom(command);
         setRoomInfo();
         setBackground();
+        anchorPane.setStyle("-fx-border-color: black;");
+
     }
 
     @FXML
     public void setRoomInfo() {
-        roomInfo.setText(game.getRoomInfo());
+
+        String desert = "";
+        if(game.getCurrentRoom().getType() == 6){
+              desert = Strings.Desert1txt();
+        }else if(game.getCurrentRoom().getType() == 8){
+            desert = Strings.Desert2txt();
+        }else if (game.getCurrentRoom().getType() == 9){
+            desert = Strings.Desert3txt();
+        }
+        roomInfo.setText(game.getRoomInfo() + "\n" + desert);
     }
 
     public void roomDirection(MouseEvent event) {
@@ -397,8 +408,16 @@ public class RoomController {
     //ImageViews to be added to corresponding rooms based on type. calls the map for the room
     public void keepItems(int type){
         if(type == 6){
-            saplingMap6.forEach( (k, v) ->{
-                if(k.startsWith("p")){
+            saplingMap6.forEach((k, v) ->{
+                if(desert1){
+                    ImageView tree = addTree();
+                    tree.setId(k);
+
+                    anchorPane.getChildren().add(tree);
+                    AnchorPane.setTopAnchor(tree, v[0]);
+                    AnchorPane.setLeftAnchor(tree, v[1]);
+                }
+                else if(k.startsWith("p")){
                     ImageView sapling = addSapling();
                     sapling.setId(k);
 
@@ -416,7 +435,15 @@ public class RoomController {
             });
         }else if(type == 8){
             saplingMap8.forEach( (k, v) ->{
-                if(k.startsWith("p")){
+                if(desert2){
+                    ImageView tree = addTree();
+                    tree.setId(k);
+
+                    anchorPane.getChildren().add(tree);
+                    AnchorPane.setTopAnchor(tree, v[0]);
+                    AnchorPane.setLeftAnchor(tree, v[1]);
+                }
+                else if(k.startsWith("p")){
                     ImageView sapling = addSapling();
                     sapling.setId(k);
 
@@ -434,7 +461,15 @@ public class RoomController {
             });
         }else if(type == 9){
             saplingMap9.forEach( (k, v) ->{
-                if(k.startsWith("p")){
+                if(desert3){
+                    ImageView tree = addTree();
+                    tree.setId(k);
+
+                    anchorPane.getChildren().add(tree);
+                    AnchorPane.setTopAnchor(tree, v[0]);
+                    AnchorPane.setLeftAnchor(tree, v[1]);
+                }
+                else if(k.startsWith("p")){
                     ImageView sapling = addSapling();
                     sapling.setId(k);
 
@@ -452,7 +487,12 @@ public class RoomController {
             });
         }
     }
-    
+
+    private ImageView addTree() {
+        ImageView tree = new ImageView(new Image("Resources/Tree.png"));
+        return tree;
+    }
+
 
     //removes trash from the scene when leaving the trash rooms
     public void removeTrashFromRoom(){
