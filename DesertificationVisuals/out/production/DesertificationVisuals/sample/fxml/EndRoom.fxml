@@ -16,22 +16,22 @@
             <Image url="@../../Resources/EndRoom.png" />
          </image></ImageView>
       <Text fx:id="questionText" layoutX="289.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" />
-      <RadioButton fx:id="A1" layoutX="50.0" layoutY="409.0" mnemonicParsing="false" text="A" AnchorPane.bottomAnchor="153.39999999999998" AnchorPane.leftAnchor="50.0">
+      <RadioButton fx:id="A1" focusTraversable="false" layoutX="50.0" layoutY="409.0" mnemonicParsing="false" text="A" AnchorPane.bottomAnchor="153.39999999999998" AnchorPane.leftAnchor="50.0">
          <padding>
             <Insets bottom="20.0" />
          </padding>
       </RadioButton>
-      <RadioButton fx:id="A2" layoutX="50.0" layoutY="449.0" mnemonicParsing="false" text="B" AnchorPane.bottomAnchor="113.39999999999998" AnchorPane.leftAnchor="50.0">
+      <RadioButton fx:id="A2" focusTraversable="false" layoutX="50.0" layoutY="449.0" mnemonicParsing="false" text="B" AnchorPane.bottomAnchor="113.39999999999998" AnchorPane.leftAnchor="50.0">
          <padding>
             <Insets bottom="20.0" />
          </padding>
       </RadioButton>
-      <RadioButton fx:id="A3" layoutX="50.0" layoutY="489.0" mnemonicParsing="false" text="C" AnchorPane.bottomAnchor="73.39999999999998" AnchorPane.leftAnchor="50.0">
+      <RadioButton fx:id="A3" focusTraversable="false" layoutX="50.0" layoutY="489.0" mnemonicParsing="false" text="C" AnchorPane.bottomAnchor="73.39999999999998" AnchorPane.leftAnchor="50.0">
          <padding>
             <Insets bottom="20.0" />
          </padding>
       </RadioButton>
-      <RadioButton fx:id="A4" layoutX="50.0" layoutY="529.0" mnemonicParsing="false" text="D" AnchorPane.bottomAnchor="33.39999999999998" AnchorPane.leftAnchor="50.0">
+      <RadioButton fx:id="A4" focusTraversable="false" layoutX="50.0" layoutY="529.0" mnemonicParsing="false" text="D" AnchorPane.bottomAnchor="33.39999999999998" AnchorPane.leftAnchor="50.0">
          <padding>
             <Insets bottom="20.0" />
          </padding>

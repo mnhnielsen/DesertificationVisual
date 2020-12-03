@@ -65,6 +65,7 @@ public class EndRoomController {
             if (A1.isSelected()) {
                 status.setText("Correct Answer");
                 submit.setDisable(true);
+                clearButton();
                 setQuestionText2();
             } else {
                 status.setText("Incorrect Answer, try again");
@@ -84,6 +85,7 @@ public class EndRoomController {
             if (A3.isSelected()) {
                 status.setText("Correct Answer");
                 submit.setDisable(true);
+                clearButton();
                 setQuestionText3();
             } else {
                 status.setText("Incorrect Answer, try again");
@@ -113,6 +115,13 @@ public class EndRoomController {
                 submit.setDisable(false);
             }
         });
+    }
+
+    public void clearButton(){
+        A1.setSelected(false);
+        A2.setSelected(false);
+        A3.setSelected(false);
+        A4.setSelected(false);
     }
 
     public void exit() throws IOException {

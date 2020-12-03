@@ -3,43 +3,44 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.shopController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.shopController">
    <children>
-      <HBox prefHeight="150.0" prefWidth="200.0" spacing="50.0">
+      <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="200.0" spacing="50.0" translateX="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sapling" HBox.hgrow="ALWAYS">
+            <ImageView fitHeight="100.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/coin.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coin">
                <HBox.margin>
-                  <Insets />
+                  <Insets right="20.0" />
                </HBox.margin>
                <font>
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label fx:id="saplingLabel" alignment="CENTER" text="0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label fx:id="coinLabel" alignment="CENTER" text="0" textAlignment="CENTER" translateX="28.0">
                <font>
                   <Font size="30.0" />
                </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </Label>
-            <Button fx:id="buyButton" mnemonicParsing="false" onAction="#onAction" text="Buy" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
-      <HBox prefHeight="150.0" prefWidth="200.0" spacing="50.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" spacing="50.0">
          <children>
+            <ImageView fitHeight="100.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/trash.png" />
+               </image>
+            </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trash">
                <HBox.margin>
                   <Insets />
@@ -48,7 +49,7 @@
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label fx:id="trashLabel" alignment="CENTER" text="0" textAlignment="CENTER">
+            <Label fx:id="trashLabel" alignment="CENTER" text="0" textAlignment="CENTER" translateX="35.0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -63,21 +64,37 @@
             </Button>
          </children>
       </HBox>
-      <HBox prefHeight="150.0" prefWidth="200.0" spacing="50.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coin">
+            <ImageView fitHeight="100.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/sapling.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sapling">
                <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets />
                </HBox.margin>
                <font>
                   <Font size="41.0" />
                </font>
             </Text>
-            <Label fx:id="coinLabel" alignment="CENTER" text="0" textAlignment="CENTER">
+            <Label fx:id="saplingLabel" alignment="CENTER" text="0" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Label>
+            <Button fx:id="buyButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAction" text="Buy">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
    </children>

@@ -55,6 +55,14 @@ public class RoomController {
     private static int sapling2;
     private static int sapling3;
 
+    public ImageView desert6Tree;
+    public ImageView desert9Tree;
+    public ImageView desert8Tree;
+
+    public Text desert6Text;
+    public Text desert8Text;
+    public Text desert9Text;
+
     private Boolean desert1 = false;
     private Boolean desert2 = false;
     private Boolean desert3 = false;
@@ -83,6 +91,8 @@ public class RoomController {
     private boolean first8 = true;
     private boolean first9 = true;
 
+    private static int trashCollected = 0;
+
 
 
     Game game = new Game();
@@ -93,6 +103,16 @@ public class RoomController {
         setRoomInfo();
         setBackground();
         anchorPane.setStyle("-fx-border-color: black;");
+
+        EndQuiz.setVisible(false);
+
+        desert6Text.setVisible(false);
+        desert8Text.setVisible(false);
+        desert9Text.setVisible(false);
+
+        desert6Tree.setVisible(false);
+        desert8Tree.setVisible(false);
+        desert9Tree.setVisible(false);
 
     }
 
@@ -161,20 +181,21 @@ public class RoomController {
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
             showButtons(false,true,false,false,false);
 
-            //manually addding trash. Should refactor
-            addTrashToRoom(Math.random()*600, Math.random()*350, "t1");
-            addTrashToRoom(Math.random()*550, Math.random()*350, "t2");
-            addTrashToRoom(Math.random()*450 + 100, Math.random()*350, "t3");
-
+            if(trashCollected<13){
+                addTrashToRoom(Math.random()*600, Math.random()*350, "t1");
+                addTrashToRoom(Math.random()*550, Math.random()*350, "t2");
+                addTrashToRoom(Math.random()*450 + 100, Math.random()*350, "t3");
+            }
 
         }else if(game.getCurrentRoom().getType() == 11){
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
             showButtons(false, false, false, true, false);
 
-
-            addTrashToRoom(Math.random()*600, Math.random()*350, "t1");
-            addTrashToRoom(Math.random()*550, Math.random()*350, "t2");
-            addTrashToRoom(Math.random()*450 + 100, Math.random()*350, "t3");
+            if(trashCollected<13) {
+                addTrashToRoom(Math.random() * 600, Math.random() * 350, "t1");
+                addTrashToRoom(Math.random() * 550, Math.random() * 350, "t2");
+                addTrashToRoom(Math.random() * 450 + 100, Math.random() * 350, "t3");
+            }
         }else if(game.getCurrentRoom().getType() == 5){
 
 
@@ -312,6 +333,7 @@ public class RoomController {
                 anchorPane.getChildren().remove(trash);
                 inventory.addTrash();
                 Trash.setText(""+inventory.countTrash());
+                trashCollected++;
             }
         });
         return trash;
@@ -350,8 +372,9 @@ public class RoomController {
                         saplingMap6.remove(id);
                         sapling1++;
                         if(sapling1 == 3){
-                            System.out.println("Desert 1 true");
                             desert1 = true;
+                            desert6Text.setVisible(true);
+                            desert6Tree.setVisible(true);
                         }
                     }else if(currentroom == 8){
                         saplingMap8.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
@@ -359,7 +382,8 @@ public class RoomController {
                         sapling2++;
                         if(sapling2 == 4){
                             desert2 = true;
-                            System.out.println("Desert 2 true");
+                            desert8Text.setVisible(true);
+                            desert8Tree.setVisible(true);
                         }
                     }else if(currentroom == 9){
                         saplingMap9.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
@@ -367,8 +391,12 @@ public class RoomController {
                         sapling3++;
                         if(sapling3 == 5){
                             desert3 = true;
-                            System.out.println("Desert 3 true");
+                            desert9Text.setVisible(true);
+                            desert9Tree.setVisible(true);
                         }
+                    }
+                    if(desert1 && desert2 && desert3){
+                        EndQuiz.setVisible(true);
                     }
                 }
             }
@@ -565,7 +593,7 @@ public class RoomController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../fxml/shop.fxml"));
 
-                Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+                Scene scene = new Scene(fxmlLoader.load(), 600, 300);
                 Stage stage = new Stage();
 
                 stage.setTitle("Shop");
@@ -573,7 +601,6 @@ public class RoomController {
                 stage.setOnHiding(event-> updateText());
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
-
 
             }
         }
@@ -593,12 +620,13 @@ public class RoomController {
         West.setVisible(west);
         shop.setVisible(vendor);
 
-        if(desert1 && desert2 && desert3){
-            EndQuiz.setVisible(true);
-        }
-        else{
-            EndQuiz.setVisible(false);
-        }
+        North.setFocusTraversable(false);
+        East.setFocusTraversable(false);
+        South.setFocusTraversable(false);
+        West.setFocusTraversable(false);
+
+
+
     }
     public void EndQuiz(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
