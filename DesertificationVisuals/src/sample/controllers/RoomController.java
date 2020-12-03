@@ -1,6 +1,7 @@
 package sample.controllers;
 
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,12 +42,23 @@ public class RoomController {
     public Text Trash;
     public AnchorPane anchorPane;
 
+    public Button EndQuiz;
+
     private static int trashCount = 0;
     private static int soilCount = 0;
     private static int saplingCount = 0;
     public static int coins = 0;
     public static int saplings = 0;
     public static int trash = 0;
+
+    private static int sapling1;
+    private static int sapling2;
+    private static int sapling3;
+
+    private Boolean desert1 = false;
+    private Boolean desert2 = false;
+    private Boolean desert3 = false;
+
 
     public static Inventory inventory = new Inventory();
     public Text inventoryTrash;
@@ -318,12 +330,27 @@ public class RoomController {
                     if(currentroom == 6){
                         saplingMap6.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap6.remove(id);
+                        sapling1++;
+                        if(sapling1 == 3){
+                            System.out.println("Desert 1 true");
+                            desert1 = true;
+                        }
                     }else if(currentroom == 8){
                         saplingMap8.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap8.remove(id);
+                        sapling2++;
+                        if(sapling2 == 4){
+                            desert2 = true;
+                            System.out.println("Desert 2 true");
+                        }
                     }else if(currentroom == 9){
                         saplingMap9.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap9.remove(id);
+                        sapling3++;
+                        if(sapling3 == 5){
+                            desert3 = true;
+                            System.out.println("Desert 3 true");
+                        }
                     }
                 }
             }
@@ -518,6 +545,26 @@ public class RoomController {
         South.setVisible(south);
         West.setVisible(west);
         shop.setVisible(vendor);
+
+        if(desert1 && desert2 && desert3){
+            EndQuiz.setVisible(true);
+        }
+        else{
+            EndQuiz.setVisible(false);
+        }
+    }
+    public void EndQuiz(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../fxml/EndRoom.fxml"));
+        Stage currentStage = (Stage)EndQuiz.getScene().getWindow();
+
+        Scene scene = new Scene(fxmlLoader.load(), 900,675);
+        Stage stage = new Stage();
+        stage.setTitle("Desertification Quiz!");
+        stage.setScene(scene);
+        stage.show();
+        currentStage.close();
+
     }
 
 }
