@@ -18,7 +18,7 @@ public class Main extends Application {
         primaryStage.setTitle("World of Zuul");
 
 
-        primaryStage.setScene(new Scene(root, 900, 675));
+        primaryStage.setScene(new Scene(root, 600, 675));
 
         primaryStage.show();
 

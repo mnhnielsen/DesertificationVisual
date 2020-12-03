@@ -87,6 +87,13 @@ public class RoomController {
 
     Game game = new Game();
 
+    public void initialize(){
+        Command command = new Command(CommandWord.GO, "north");
+        game.goRoom(command);
+        setRoomInfo();
+        setBackground();
+    }
+
     @FXML
     public void setRoomInfo() {
         roomInfo.setText(game.getRoomInfo());
@@ -558,7 +565,7 @@ public class RoomController {
         fxmlLoader.setLocation(getClass().getResource("../fxml/EndRoom.fxml"));
         Stage currentStage = (Stage)EndQuiz.getScene().getWindow();
 
-        Scene scene = new Scene(fxmlLoader.load(), 900,675);
+        Scene scene = new Scene(fxmlLoader.load(), 600,675);
         Stage stage = new Stage();
         stage.setTitle("Desertification Quiz!");
         stage.setScene(scene);

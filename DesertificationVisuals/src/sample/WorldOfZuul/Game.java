@@ -24,33 +24,28 @@ public class Game {
                 currencyObtainRoom1, currencyObtainRoom, desertBaseRoom, desert1,
                 desert2, desert3, endRoom;
 
-        entry = new Room("At the entry room. To start the game type: go north", 1);
+        entry = new Room("At the entry room. To start the game: go north", 1);
         tutorial = new Room("in the tutorial room. Here you can learn how to play the game. " +
                 "\nHere are some basics about the game:\n" +
-                "Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant \n" +
-                "use commandword: help & roominfo for specific info on the current room", 2);
+                "Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant", 2);
         currencyRoom = new Room("in the vendor room. Here you can exchange your trash for saplings", 3);
 
-        currencyObtainRoom = new Room("trash room. Here you can harvest trash using the commandword: pickup", 4);
+        currencyObtainRoom = new Room("trash room. Here you can harvest trash by clicking on it", 4);
         currencyObtainRoom.addTrash(8);
 
-        currencyObtainRoom1 = new Room("trash room. Here you can harvest trash using the commandword: pickup", 11);
+        currencyObtainRoom1 = new Room("trash room. Here you can harvest trash by clicking on it", 11);
         currencyObtainRoom1.addTrash(5);
 
         desertBaseRoom = new Room("in the desert base room. Choose a direction to go to a desert", 5);
-        desert1 = new Room("in the first desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 6);
-        desert2 = new Room("in the second desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 8);
-        desert3 = new Room("in the third desert. Stop the desertification\n" +
-                "Use commandword: roominfo for information about desertification", 9);
+        desert1 = new Room("in the first desert. Stop the desertification", 6);
+        desert2 = new Room("in the second desert. Stop the desertification", 8);
+        desert3 = new Room("in the third desert. Stop the desertification", 9);
         endRoom = new Room("", 7);
 
 
         entry.setExit("north", tutorial);
 
         tutorial.setExit("north", currencyRoom);
-        tutorial.setExit("south", tutorial);
 
         currencyRoom.setExit("north", desertBaseRoom);
         currencyRoom.setExit("west", currencyObtainRoom);
@@ -72,10 +67,9 @@ public class Game {
 
         desert3.setExit("south", desertBaseRoom);
 
-        desert3.setExit("north", endRoom);
 
         endRoom.setExit("south", desert3);
-        currentRoom = entry;
+        setCurrentRoom(entry);
     }
 
     public void play() {
@@ -261,7 +255,7 @@ public class Game {
                         question1 = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = getCurrentRoom().getExit("south");
+                        setCurrentRoom(getCurrentRoom().getExit("south"));
                         System.out.println();
                         System.out.println(getCurrentRoom().getLongDescription());
                     }
@@ -279,7 +273,7 @@ public class Game {
                         question2 = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = getCurrentRoom().getExit("south");
+                        setCurrentRoom(getCurrentRoom().getExit("south"));
                         System.out.println();
                         System.out.println(getCurrentRoom().getLongDescription());
                     }
@@ -298,14 +292,14 @@ public class Game {
                         isAnswered = true;
                     } else {
                         System.out.println("Incorrect. Go back to the deserts to look for information.");
-                        currentRoom = getCurrentRoom().getExit("south");
+                        setCurrentRoom(getCurrentRoom().getExit("south"));
                         System.out.println();
                         System.out.println(getCurrentRoom().getLongDescription());
                     }
                 }
             } else {
                 System.out.println("You need to stop the desertification before you can end the game.");
-                currentRoom = getCurrentRoom().getExit("south");
+                setCurrentRoom(getCurrentRoom().getExit("south"));
                 System.out.println();
                 System.out.println(getCurrentRoom().getLongDescription());
             }
@@ -330,8 +324,7 @@ public class Game {
             }
             case 2: {
                 System.out.println("This is the tutorial room! Here are some basics about the game:  \n " +
-                        "           Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant \n" +
-                        "           use commandword help & roominfo for specific info on the current room");
+                        "           Go between rooms to pick up trash to sell for coins. Coins are used to buy saplings to plant");
                 break;
             }
             case 3: {
@@ -399,7 +392,7 @@ public class Game {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
-            currentRoom = nextRoom;
+            setCurrentRoom(nextRoom);
 
             //player.printPlayerInventory();
             System.out.println();
@@ -429,5 +422,9 @@ public class Game {
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }
