@@ -61,6 +61,7 @@ public class RoomController {
     public Text desert6Text;
     public Text desert8Text;
     public Text desert9Text;
+    public ImageView shovelImageView;
 
     private Boolean desert1 = false;
     private Boolean desert2 = false;
@@ -92,6 +93,8 @@ public class RoomController {
 
     private static int trashCollected = 0;
 
+    public static boolean hasShovel = false;
+
 
     Game game = new Game();
 
@@ -111,6 +114,8 @@ public class RoomController {
         desert6Tree.setVisible(false);
         desert8Tree.setVisible(false);
         desert9Tree.setVisible(false);
+
+        shovelImageView.setVisible(false);
 
     }
 
@@ -179,7 +184,7 @@ public class RoomController {
             background.setImage(new Image("Resources/CurrencyObtainLeft.png"));
             showButtons(false, true, false, false, false);
 
-            if (trashCollected < 13) {
+            if (trashCollected < 17) {
                 addTrashToRoom(Math.random() * 600, Math.random() * 350, "t1");
                 addTrashToRoom(Math.random() * 550, Math.random() * 350, "t2");
                 addTrashToRoom(Math.random() * 450 + 100, Math.random() * 350, "t3");
@@ -346,7 +351,7 @@ public class RoomController {
         soil.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (inventory.hasSapling()) {
+                if (inventory.hasSapling() && hasShovel) {
                     anchorPane.getChildren().remove(soil);
                     inventory.removeSapling();
                     updateText();
@@ -580,12 +585,15 @@ public class RoomController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/_Presentation/shop.fxml"));
 
-                Scene scene = new Scene(fxmlLoader.load(), 600, 300);
+                Scene scene = new Scene(fxmlLoader.load(), 600, 450);
                 Stage stage = new Stage();
 
                 stage.setTitle("Shop");
                 stage.setScene(scene);
-                stage.setOnHiding(event -> updateText());
+                stage.setOnHiding(event -> {
+                    updateText();
+                    if(hasShovel) shovelImageView.setVisible(true);
+                });
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 

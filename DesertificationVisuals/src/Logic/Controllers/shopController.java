@@ -12,9 +12,15 @@ public class shopController {
     public Label saplingLabel;
     public Button sellButton;
     public Label trashLabel;
+    public Button buyButtonShovel;
 
 
     public void initialize() {
+        if(!RoomController.hasShovel){
+            buyButtonShovel.setVisible(true);
+        }else{
+            buyButtonShovel.setVisible(false);
+        }
         updateText();
     }
 
@@ -25,9 +31,14 @@ public class shopController {
             RoomController.coins++;
             updateText();
 
-        } else if (actionEvent.getSource() == buyButton && RoomController.coins > 0) {
+        } else if (actionEvent.getSource() == buyButton && RoomController.coins > 0 && RoomController.inventory.countSapling() < 13) {
             RoomController.coins--;
             RoomController.inventory.addSapling();
+            updateText();
+        } else if (actionEvent.getSource() == buyButtonShovel && RoomController.coins > 2){
+            RoomController.hasShovel = true;
+            RoomController.coins -= 3;
+            buyButtonShovel.setVisible(false);
             updateText();
         }
     }
