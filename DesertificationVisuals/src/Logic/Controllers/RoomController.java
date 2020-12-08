@@ -185,7 +185,7 @@ public class RoomController {
             background.setImage(new Image("Resources/CurrencyObtainRight.png"));
             showButtons(false, false, false, true, false);
 
-            if (trashCollected < 13) {
+            if (trashCollected < 17) {
                 addTrashToRoom(Math.random() * 600, Math.random() * 350, "t1");
                 addTrashToRoom(Math.random() * 550, Math.random() * 350, "t2");
                 addTrashToRoom(Math.random() * 450 + 100, Math.random() * 350, "t3");
