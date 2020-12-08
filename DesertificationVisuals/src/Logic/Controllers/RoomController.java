@@ -43,30 +43,30 @@ public class RoomController {
 
     public Button EndQuiz;
 
+    private static int trashCollected = 0;
     private static int trashCount = 0;
-    private static int soilCount = 0;
-    private static int saplingCount = 0;
     public static int coins = 0;
-    public static int saplings = 0;
-    public static int trash = 0;
 
-    private static int sapling1;
-    private static int sapling2;
-    private static int sapling3;
+
+    private static int saplingPlantedInDesert6;
+    private static int saplingsPlantedInDesert8;
+    private static int saplingsPlantedInDesert9;
 
     public ImageView desert6Tree;
-    public ImageView desert9Tree;
     public ImageView desert8Tree;
+    public ImageView desert9Tree;
 
     public Text desert6Text;
     public Text desert8Text;
     public Text desert9Text;
+
     public ImageView shovelImageView;
 
-    private Boolean desert1 = false;
-    private Boolean desert2 = false;
-    private Boolean desert3 = false;
+    private Boolean desertCompleted6 = false;
+    private Boolean desertCompleted8 = false;
+    private Boolean desertCompleted9 = false;
 
+    public static boolean hasShovel = false;
 
     public static Inventory inventory = new Inventory();
     public Text inventoryTrash;
@@ -87,14 +87,9 @@ public class RoomController {
 
     private int previousRoomType = 0;
 
-    private boolean first6 = true;
-    private boolean first8 = true;
-    private boolean first9 = true;
-
-    private static int trashCollected = 0;
-
-    public static boolean hasShovel = false;
-
+    private boolean firstTimeInDesert6 = true;
+    private boolean firstTimeInDesert8 = true;
+    private boolean firstTimeInDesert9 = true;
 
     Game game = new Game();
 
@@ -116,7 +111,6 @@ public class RoomController {
         desert9Tree.setVisible(false);
 
         shovelImageView.setVisible(false);
-
     }
 
     @FXML
@@ -158,9 +152,7 @@ public class RoomController {
             setRoomInfo();
             setBackground();
         }
-
     }
-
 
     //Big working function. Should probably split it up more
     public void setBackground() {
@@ -174,7 +166,6 @@ public class RoomController {
 
         } else if (game.getCurrentRoom().getType() == 3) {
             background.setImage(new Image("Resources/CurrencyRoom.png"));
-
             showButtons(true, true, true, true, true);
 
             //removes trash from the scene
@@ -200,8 +191,6 @@ public class RoomController {
                 addTrashToRoom(Math.random() * 450 + 100, Math.random() * 350, "t3");
             }
         } else if (game.getCurrentRoom().getType() == 5) {
-
-
             removeSoilFromRoom(previousRoomType);
             previousRoomType = 0;
 
@@ -213,9 +202,9 @@ public class RoomController {
             background.setImage(new Image("Resources/DesertLeft.png"));
             showButtons(false, true, false, false, false);
 
-            if (first6) {
+            if (firstTimeInDesert6) {
                 addSoilsToRoom(6);
-                first6 = false;
+                firstTimeInDesert6 = false;
             } else {
                 keepItems(6);
             }
@@ -225,9 +214,9 @@ public class RoomController {
             background.setImage(new Image("Resources/DesertRight.png"));
             showButtons(false, false, false, true, false);
 
-            if (first8) {
+            if (firstTimeInDesert8) {
                 addSoilsToRoom(8);
-                first8 = false;
+                firstTimeInDesert8 = false;
             } else {
                 keepItems(8);
             }
@@ -237,9 +226,9 @@ public class RoomController {
             background.setImage(new Image("Resources/DesertTop.png"));
             showButtons(false, false, true, false, false);
 
-            if (first9) {
+            if (firstTimeInDesert9) {
                 addSoilsToRoom(9);
-                first9 = false;
+                firstTimeInDesert9 = false;
             } else {
                 keepItems(9);
             }
@@ -250,7 +239,6 @@ public class RoomController {
             showButtons(true, false, false, false, false);
         }
     }
-
 
     //initialising all hashmaps with soil pathces
     private void makeHashMaps(int roomLeft, int roomRight, int roomTop) {
@@ -345,7 +333,6 @@ public class RoomController {
     // id of soil is s + roomtype + n.  n>0
     public ImageView addSoil(String id) {
         ImageView soil = new ImageView(new Image("Resources/Soil.png"));
-        soilCount++;
         soil.setId(id);
 
         soil.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -371,32 +358,32 @@ public class RoomController {
                     if (currentroom == 6) {
                         saplingMap6.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap6.remove(id);
-                        sapling1++;
-                        if (sapling1 == 3) {
-                            desert1 = true;
+                        saplingPlantedInDesert6++;
+                        if (saplingPlantedInDesert6 == 3) {
+                            desertCompleted6 = true;
                             desert6Text.setVisible(true);
                             desert6Tree.setVisible(true);
                         }
                     } else if (currentroom == 8) {
                         saplingMap8.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap8.remove(id);
-                        sapling2++;
-                        if (sapling2 == 4) {
-                            desert2 = true;
+                        saplingsPlantedInDesert8++;
+                        if (saplingsPlantedInDesert8 == 4) {
+                            desertCompleted8 = true;
                             desert8Text.setVisible(true);
                             desert8Tree.setVisible(true);
                         }
                     } else if (currentroom == 9) {
                         saplingMap9.put(sapling.getId(), new double[]{mouseEvent.getSceneY() - 50, mouseEvent.getSceneX() - 25});
                         saplingMap9.remove(id);
-                        sapling3++;
-                        if (sapling3 == 5) {
-                            desert3 = true;
+                        saplingsPlantedInDesert9++;
+                        if (saplingsPlantedInDesert9 == 5) {
+                            desertCompleted9 = true;
                             desert9Text.setVisible(true);
                             desert9Tree.setVisible(true);
                         }
                     }
-                    if (desert1 && desert2 && desert3) {
+                    if (desertCompleted6 && desertCompleted8 && desertCompleted9) {
                         EndQuiz.setVisible(true);
                     }
                 }
@@ -408,7 +395,7 @@ public class RoomController {
 
     public ImageView addSapling() {
         ImageView sapling = new ImageView(new Image("Resources/sapling.png"));
-        saplingCount++;
+
         return sapling;
     }
 
@@ -438,7 +425,7 @@ public class RoomController {
     public void keepItems(int type) {
         if (type == 6) {
             saplingMap6.forEach((k, v) -> {
-                if (desert1) {
+                if (desertCompleted6) {
                     ImageView tree = addTree();
                     tree.setId(k);
 
@@ -462,7 +449,7 @@ public class RoomController {
             });
         } else if (type == 8) {
             saplingMap8.forEach((k, v) -> {
-                if (desert2) {
+                if (desertCompleted8) {
                     ImageView tree = addTree();
                     tree.setId(k);
 
@@ -486,7 +473,7 @@ public class RoomController {
             });
         } else if (type == 9) {
             saplingMap9.forEach((k, v) -> {
-                if (desert3) {
+                if (desertCompleted9) {
                     ImageView tree = addTree();
                     tree.setId(k);
 
@@ -574,7 +561,6 @@ public class RoomController {
                 }
             }
         }
-        soilCount = 0;
     }
 
     //opens new window when Shop button is pressed
@@ -619,8 +605,6 @@ public class RoomController {
         East.setFocusTraversable(false);
         South.setFocusTraversable(false);
         West.setFocusTraversable(false);
-
-
     }
 
     public void EndQuiz(ActionEvent actionEvent) throws IOException {
@@ -636,5 +620,4 @@ public class RoomController {
         currentStage.close();
 
     }
-
 }

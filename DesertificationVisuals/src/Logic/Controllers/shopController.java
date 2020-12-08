@@ -30,7 +30,6 @@ public class shopController {
             RoomController.inventory.removeTrash();
             RoomController.coins++;
             updateText();
-
         } else if (actionEvent.getSource() == buyButton && RoomController.coins > 0 && RoomController.inventory.countSapling() < 13) {
             RoomController.coins--;
             RoomController.inventory.addSapling();
@@ -48,6 +47,4 @@ public class shopController {
         trashLabel.setText("" + RoomController.inventory.countTrash());
         saplingLabel.setText("" + RoomController.inventory.countSapling());
     }
-
-
 }
